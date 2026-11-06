@@ -3,7 +3,6 @@ import { ACAO_LABEL, ACOES_COM_APROVACAO, ESTADO_AGENTE_LABEL, PROVEDOR_LABEL } 
 import { api, moeda } from '../api';
 import { useCtx } from '../App';
 import { Modal } from './Modal';
-import { Sprite } from './Sprite';
 import { LinhaTarefa } from './Tarefas';
 
 export function AgentePainel({ id, onFechar }: { id: string; onFechar: () => void }) {
@@ -28,7 +27,7 @@ export function AgentePainel({ id, onFechar }: { id: string; onFechar: () => voi
     <Modal titulo={a.nome} onFechar={onFechar} lateral>
       <div className="perfil" style={{ '--dep': dep?.cor ?? '#64748b' } as React.CSSProperties}>
         <div className={`perfil-avatar e-${a.estado}`}>
-          <Sprite agente={a} cor={dep?.cor ?? '#64748b'} />
+          <span className="iniciais" aria-hidden>{a.nome.split(/\s+/).slice(0, 2).map((p) => p[0]).join('').toUpperCase()}</span>
         </div>
         <div>
           <p className="perfil-cargo">{a.cargo}</p>

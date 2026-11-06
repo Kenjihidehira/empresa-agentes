@@ -177,7 +177,10 @@ export default function App() {
         </header>
 
         <main className={`conteudo aba-${aba}`}>
-          {aba === 'escritorio' && <Escritorio />}
+          {/* O escritório 3D fica montado entre abas (só pausa), para não recarregar a sede a cada troca. */}
+          <div className="aba-escritorio-wrap" hidden={aba !== 'escritorio'}>
+            <Escritorio ativo={aba === 'escritorio'} />
+          </div>
           {aba === 'organograma' && <Organograma />}
           {aba === 'tarefas' && <Tarefas />}
           {aba === 'aprovacoes' && <Aprovacoes />}

@@ -1,0 +1,110 @@
+{
+  "format": "glTF 2.0 binary",
+  "coordinateSystem": "Y-up",
+  "generatedAt": "2026-11-06T18:15:05.826Z",
+  "clips": [
+    "idle",
+    "walk",
+    "work",
+    "waiting",
+    "blocked"
+  ],
+  "agents": [
+    {
+      "id": "helena",
+      "name": "Helena Duarte",
+      "role": "CTO",
+      "department": "diretoria",
+      "accent": "#f59e0b",
+      "file": "helena.glb"
+    },
+    {
+      "id": "rui",
+      "name": "Rui Matos",
+      "role": "Product Owner",
+      "department": "produto",
+      "accent": "#a78bfa",
+      "file": "rui.glb"
+    },
+    {
+      "id": "lia",
+      "name": "Lia Torres",
+      "role": "Product Designer",
+      "department": "design",
+      "accent": "#f472b6",
+      "file": "lia.glb"
+    },
+    {
+      "id": "bruno",
+      "name": "Bruno Sato",
+      "role": "Dev Frontend Sênior",
+      "department": "frontend",
+      "accent": "#38bdf8",
+      "file": "bruno.glb"
+    },
+    {
+      "id": "carla",
+      "name": "Carla Nunes",
+      "role": "Dev Frontend",
+      "department": "frontend",
+      "accent": "#38bdf8",
+      "file": "carla.glb"
+    },
+    {
+      "id": "diego",
+      "name": "Diego Alves",
+      "role": "Dev Backend Sênior",
+      "department": "backend",
+      "accent": "#4ade80",
+      "file": "diego.glb"
+    },
+    {
+      "id": "ana",
+      "name": "Ana Kato",
+      "role": "Dev Backend",
+      "department": "backend",
+      "accent": "#4ade80",
+      "file": "ana.glb"
+    },
+    {
+      "id": "marina",
+      "name": "Marina Lopes",
+      "role": "Engenheira de Dados",
+      "department": "dados",
+      "accent": "#2dd4bf",
+      "file": "marina.glb"
+    },
+    {
+      "id": "igor",
+      "name": "Igor Ramos",
+      "role": "Analista de QA",
+      "department": "qa",
+      "accent": "#facc15",
+      "file": "igor.glb"
+    },
+    {
+      "id": "paula",
+      "name": "Paula Reis",
+      "role": "QA de Automação",
+      "department": "qa",
+      "accent": "#facc15",
+      "file": "paula.glb"
+    },
+    {
+      "id": "otavio",
+      "name": "Otávio Lima",
+      "role": "SRE / DevOps",
+      "department": "devops",
+      "accent": "#fb923c",
+      "file": "otavio.glb"
+    },
+    {
+      "id": "sofia",
+      "name": "Sofia Prado",
+      "role": "Suporte N2",
+      "department": "suporte",
+      "accent": "#94a3b8",
+      "file": "sofia.glb"
+    }
+  ]
+}

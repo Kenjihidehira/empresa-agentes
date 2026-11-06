@@ -1,11 +1,12 @@
 # Empresa de Agentes
 
 Aplicação web para gerenciar agentes de IA como funcionários de uma **empresa virtual de desenvolvimento de software**.
-O escritório é uma planta **isométrica em pixel art**: corredores, baias com divisórias e mesas de madeira, monitores
-acesos com código rolando, sala da diretoria com carpete e funcionários com proporção adulta e sombreamento (cabelo, barba, óculos e pele únicos por agente; roupa conforme o setor). Rótulos acima de cada agente mostram
-nome e estado (`TRABALHANDO`, `AGUARDANDO APROVAÇÃO`, `BLOQUEADO`), e agentes ociosos às vezes saem para andar pelo corredor.
+O escritório é uma **sede 3D** (Three.js): um prédio de três andares em corte isométrico, com estações de trabalho,
+sala de reunião, praça, avenida e cidade ao fundo. Cada agente é um modelo 3D animado que muda de animação conforme o
+estado: parado (`idle`), trabalhando no laptop (`work`), aguardando aprovação (`waiting`) ou bloqueado (`blocked`).
+Rótulos acima de cada um mostram nome e estado.
 
-- **Stack:** TypeScript, React 18 + Vite, Express 5, SQLite (`node:sqlite`, nativo do Node 22, sem compilação).
+- **Stack:** TypeScript, React 18 + Vite, Three.js, Express 5, SQLite (`node:sqlite`, nativo do Node 22, sem compilação).
 - **Motores de execução:** Simulação (padrão, sem custo), ChatGPT via Codex CLI e Claude via Claude Code CLI.
 - **Regras aplicadas no backend:** permissões por tipo de trabalho, orçamento por agente e aprovação humana para ações sensíveis.
 
@@ -44,16 +45,16 @@ Variáveis de ambiente opcionais: `PORT` (padrão 3001), `DB_PATH` (padrão `dat
 
 | Aba | O que faz |
 | --- | --- |
-| **Escritório** | Planta isométrica gerada automaticamente a partir dos setores e agentes. **Janela de chat** (canto superior esquerdo) com os eventos ao vivo e um campo para delegar uma tarefa ao agente selecionado. **Painel de controle** (canto inferior direito) com agentes ativos, projetos, aprovações, custo e estado geral. Botão **Ocultar terminais**, zoom de 100% a 300%, arrastar para mover a câmera e filtro por setor. No celular, vira uma lista de cartões. |
+| **Escritório** | Sede 3D em **vista explodida** (os andares ficam afastados para mostrar o interior). Os 12 agentes da demonstração ocupam suas mesas; agentes novos ou importados aparecem na praça em frente ao prédio, com a roupa na cor do setor. **Janela de chat** (canto superior esquerdo) com os eventos ao vivo e um campo para delegar uma tarefa ao agente selecionado. **Painel de controle** (canto inferior direito) com agentes ativos, projetos, aprovações, custo e estado geral. Botão **Ocultar terminais**, filtro por setor, zoom (botões ou roda do mouse), arrastar para mover e botão direito para girar. Funciona também no celular (um dedo move, dois dedos dão zoom/giram). Se o computador não sustentar ~24 fps, a cena entra em **modo leve** (sem sombras). |
 | **Organograma** | Hierarquia (gestor → equipe) com cor do departamento e estado de cada agente. |
 | **Tarefas** | Criar, filtrar, buscar, executar e acompanhar: resultado, erro e linha do tempo de eventos de cada tarefa. |
 | **Aprovações** | Fila de ações sensíveis com Aprovar/Rejeitar, observação opcional e histórico. |
 | **Importar** | Validação e importação de pacotes `agentcompanies/v1`, lista de pacotes importados e botão para restaurar a demonstração. |
 
-Clique em um agente (no personagem ou no rótulo) para abrir a ficha lateral: gestor, equipe, motor, barra de orçamento,
+Clique em um agente (no modelo 3D ou no rótulo, que também centraliza a câmera nele) para abrir a ficha lateral: gestor, equipe, motor, barra de orçamento,
 permissões, instruções e tarefas. Com a ficha aberta, a janela de chat delega tarefas a esse agente.
 
-**Teclado:** `1`–`5` trocam de aba, `N` abre uma nova tarefa, `A` cria um novo agente, setas navegam entre os cubículos,
+**Teclado:** `1`–`5` trocam de aba, `N` abre uma nova tarefa, `A` cria um novo agente, setas navegam entre os agentes,
 `Enter` abre a ficha e `Esc` fecha janelas.
 
 Tudo atualiza em tempo real via Server-Sent Events (`/api/stream`).
@@ -147,8 +148,9 @@ Os dois também podem ser carregados com um clique na aba **Importar**.
 server/   index.ts (inicialização) · app.ts (rotas) · db.ts (SQLite) · motor.ts (regras + execução)
           importador.ts (agentcompanies/v1) · seed.ts (demonstração) · tests/
 shared/   types.ts (tipos e constantes usados no front e no back)
-src/      App.tsx · api.ts · styles.css · components/ (Escritorio, Organograma, Tarefas, Aprovacoes, Importar, ...)
-          iso/cena.ts (layout e desenho isométrico em canvas) · iso/sprites.ts (personagens em pixel art)
+src/      App.tsx · api.ts · styles.css · components/ (Escritorio, Escritorio3D, Organograma, Tarefas, Aprovacoes, ...)
+          three/mundo.ts (cena 3D: sede, agentes, animações por estado, câmera, seleção)
+public/modelos/  sede-nebula-cidade.glb e agentes/*.glb (glTF 2.0, kit "empresa-agentes-kit-3d")
 exemplos/ pacotes de exemplo
 data/     banco SQLite (criado automaticamente, fora do git)
 ```
