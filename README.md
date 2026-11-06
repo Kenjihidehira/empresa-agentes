@@ -2,7 +2,7 @@
 
 Aplicação web para gerenciar agentes de IA como funcionários de uma **empresa virtual de desenvolvimento de software**.
 O escritório é uma planta **isométrica em pixel art**: corredores, baias com divisórias e mesas de madeira, monitores
-acesos com código rolando, sala da diretoria com carpete e funcionários chibi (cabeça grande, cabelo e acessórios únicos, roupa conforme o setor). Rótulos acima de cada agente mostram
+acesos com código rolando, sala da diretoria com carpete e funcionários com proporção adulta e sombreamento (cabelo, barba, óculos e pele únicos por agente; roupa conforme o setor). Rótulos acima de cada agente mostram
 nome e estado (`TRABALHANDO`, `AGUARDANDO APROVAÇÃO`, `BLOQUEADO`), e agentes ociosos às vezes saem para andar pelo corredor.
 
 - **Stack:** TypeScript, React 18 + Vite, Express 5, SQLite (`node:sqlite`, nativo do Node 22, sem compilação).

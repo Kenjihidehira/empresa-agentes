@@ -1,5 +1,5 @@
 import type { Agente, Departamento, EstadoAgente } from '../../shared/types';
-import { chibi, desenharSprite, hash, type Pose } from './sprites';
+import { desenharSprite, hash, personagem, type Pose } from './sprites';
 
 // ---------------------------------------------------------------------------
 // Projeção isométrica 2:1. Coordenadas do mundo em "tiles" (x, y) e z em pixels.
@@ -318,7 +318,7 @@ export function desenharCena(ctx: Ctx, L: Layout, visuais: Map<string, EstadoVis
   for (const p of L.postos) {
     const v = visuais.get(p.agenteId);
     if (!v) continue;
-    const pose = (nome: Pose) => chibi(p.agenteId, v.setor, v.cor, nome);
+    const pose = (nome: Pose) => personagem(p.agenteId, v.setor, v.cor, nome);
     const sem = hash(p.agenteId) % 7;
 
     if (p.exec) {
@@ -371,15 +371,15 @@ export function desenharCena(ctx: Ctx, L: Layout, visuais: Map<string, EstadoVis
     if (pos.sentado) {
       const [hx, hy] = projetar(L, p.sx, p.sy, 7);
       add(p.sx + p.sy + 0.02, () => desenharSprite(ctx, pose('sentadoCostas'), hx, hy, { maosAcima: v.estado === 'trabalhando' && Math.floor(t / 140) % 2 === 0 }));
-      atores.push({ agenteId: p.agenteId, x: p.sx, y: p.sy, sentado: true, cabeca: [hx, hy - 34], caixa: [hx - 12, hy - 33, 24, 36] });
+      atores.push({ agenteId: p.agenteId, x: p.sx, y: p.sy, sentado: true, cabeca: [hx, hy - 24], caixa: [hx - 8, hy - 23, 16, 25] });
     } else {
       const [px, py] = projetar(L, pos.x, pos.y, 0);
       add(pos.x + pos.y + 0.02, () => {
         ctx.fillStyle = 'rgba(0,0,0,0.25)';
-        ctx.fillRect(Math.round(px - 8), Math.round(py - 2), 16, 4);
-        desenharSprite(ctx, pose(pos.nome), px, py - (pos.nome.endsWith('B') ? 1 : 0));
+        ctx.fillRect(Math.round(px - 6), Math.round(py - 1), 12, 3);
+        desenharSprite(ctx, pose(pos.nome), px, py);
       });
-      atores.push({ agenteId: p.agenteId, x: pos.x, y: pos.y, sentado: false, cabeca: [px, py - 40], caixa: [px - 12, py - 39, 24, 41] });
+      atores.push({ agenteId: p.agenteId, x: pos.x, y: pos.y, sentado: false, cabeca: [px, py - 39], caixa: [px - 8, py - 37, 16, 39] });
     }
     add(p.sx + p.sy + 0.3, () => caixa(ctx, L, p.sx - 0.32, p.sy + 0.24, 7, 0.64, 0.1, 6, COR.cadeira));
   }
@@ -394,7 +394,7 @@ function desenharPostoExec(
   L: Layout,
   p: Posto,
   v: EstadoVisual,
-  pose: (nome: Pose) => ReturnType<typeof chibi>,
+  pose: (nome: Pose) => ReturnType<typeof personagem>,
   t: number,
   add: (k: number, d: () => void) => void,
   atores: Ator[],
@@ -440,7 +440,7 @@ function desenharPostoExec(
   });
   const [hx, hy] = projetar(L, p.sx, p.sy, 8);
   add(p.sx + p.sy + 0.1, () => desenharSprite(ctx, pose('sentadoFrente'), hx, hy, { maosAcima: v.estado === 'trabalhando' && Math.floor(t / 140) % 2 === 0 }));
-  atores.push({ agenteId: p.agenteId, x: p.sx, y: p.sy, sentado: true, cabeca: [hx, hy - 26], caixa: [hx - 11, hy - 26, 22, 30] });
+  atores.push({ agenteId: p.agenteId, x: p.sx, y: p.sy, sentado: true, cabeca: [hx, hy - 24], caixa: [hx - 8, hy - 23, 16, 25] });
   // Monitor de costas sobre a mesa
   add(kMesa + 0.1, () => {
     caixa(ctx, L, p.sx - 0.35, mesa.y + 0.25, 13, 0.7, 0.08, 9, COR.monitor);
