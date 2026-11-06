@@ -157,6 +157,7 @@ function PisoIso({ deps, zoom, terminais, onFecharTerminais }: { deps: Departame
         visuais.set(a.id, {
           estado: a.estado,
           cor: d.departamentos.find((x) => x.id === a.departamentoId)?.cor ?? '#64748b',
+          setor: a.departamentoId,
           selecionado: a.id === sel,
           hover: a.id === hover.current,
         });
