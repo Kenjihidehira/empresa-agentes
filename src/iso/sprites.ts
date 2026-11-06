@@ -118,10 +118,10 @@ export function chibi(id: string, setor: string, corSetor: string, pose: Pose): 
   const estilo = ESTILOS[h % ESTILOS.length]!;
   const cabelo = CABELOS[estilo]!;
   const setorBase = setor.split(':').pop()!;
-  const roupaNome = ROUPA_POR_SETOR[setorBase] ?? ['moletom', 'camisa', 'polo'][(h >> 5) % 3]!;
+  const roupaNome = ROUPA_POR_SETOR[setorBase] ?? ['moletom', 'camisa', 'polo'][(h >>> 5) % 3]!;
   const roupa = ROUPAS[roupaNome]!;
-  const oculos = (h >> 7) % 10 < 3;
-  const barba = !oculos && ['curto', 'espetado', 'careca'].includes(estilo) && (h >> 9) % 3 === 0;
+  const oculos = (h >>> 7) % 10 < 3;
+  const barba = !oculos && ['curto', 'espetado', 'careca'].includes(estilo) && (h >>> 9) % 3 === 0;
   const headset = setorBase === 'suporte';
   const costas = pose.startsWith('costas') || pose === 'sentadoCostas';
   const sentado = pose.startsWith('sentado');
@@ -166,12 +166,12 @@ export function chibi(id: string, setor: string, corSetor: string, pose: Pose): 
   if (!sentado) mapa.push(...(pose.endsWith('B') ? PERNAS_B : PERNAS_A));
 
   const jaqueta = roupaNome === 'jaqueta';
-  const corCabelo = CORES_CABELO[(h >> 3) % CORES_CABELO.length]!;
+  const corCabelo = CORES_CABELO[(h >>> 3) % CORES_CABELO.length]!;
   const cores: Record<string, string> = {
     H: corCabelo,
     L: clarear(corCabelo, 0.35),
     D: escurecer(corCabelo, 0.7),
-    S: CORES_PELE[(h >> 11) % CORES_PELE.length]!,
+    S: CORES_PELE[(h >>> 11) % CORES_PELE.length]!,
     E: '#1a1a22',
     X: '#ffffff',
     R: '#f29b9b',
@@ -183,7 +183,7 @@ export function chibi(id: string, setor: string, corSetor: string, pose: Pose): 
     J: '#2b3140',
     W: '#f1f5f9',
     T: corSetor,
-    P: CORES_CALCA[(h >> 13) % CORES_CALCA.length]!,
+    P: CORES_CALCA[(h >>> 13) % CORES_CALCA.length]!,
   };
   const sprite = { mapa, cores };
   cache.set(chave, sprite);
