@@ -1,0 +1,49 @@
+{
+  "apiVersion": "agentcompanies/v1",
+  "kind": "AgentCompany",
+  "metadata": {
+    "name": "Squad Mobile",
+    "version": "1.0.0",
+    "description": "Time que cuida dos apps iOS e Android."
+  },
+  "spec": {
+    "departments": [
+      { "id": "mobile", "name": "Mobile", "color": "#e879f9" }
+    ],
+    "agents": [
+      {
+        "id": "tiago",
+        "name": "Tiago Mendes",
+        "role": "Tech Lead Mobile",
+        "department": "mobile",
+        "provider": "simulacao",
+        "permissions": ["codigo", "revisao", "planejamento"],
+        "budgetUsd": 20,
+        "instructions": "React Native e Expo. Garante releases semanais."
+      },
+      {
+        "id": "nina",
+        "name": "Nina Costa",
+        "role": "Dev Mobile",
+        "department": "mobile",
+        "reportsTo": "tiago",
+        "provider": "simulacao",
+        "permissions": ["codigo", "teste"],
+        "budgetUsd": 12
+      },
+      {
+        "id": "leo",
+        "name": "Léo Fontes",
+        "role": "QA Mobile",
+        "department": "qa",
+        "reportsTo": "tiago",
+        "permissions": ["teste"],
+        "budgetUsd": 8
+      }
+    ],
+    "tasks": [
+      { "title": "Corrigir crash na tela de pedidos (Android)", "assignee": "nina", "action": "codigo" },
+      { "title": "Planejar release 3.2 do app", "assignee": "tiago", "action": "planejamento" }
+    ]
+  }
+}

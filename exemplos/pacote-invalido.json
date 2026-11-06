@@ -1,0 +1,20 @@
+{
+  "apiVersion": "agentcompanies/v2",
+  "kind": "AgentCompany",
+  "metadata": { "name": "Pacote Quebrado" },
+  "spec": {
+    "departments": [{ "id": "Growth Team", "name": "Growth" }],
+    "agents": [
+      {
+        "id": "max",
+        "name": "Max",
+        "role": "Growth Hacker",
+        "department": "marketing",
+        "provider": "gemini",
+        "permissions": ["codigo", "hackear"],
+        "budgetUsd": -5
+      }
+    ],
+    "tasks": [{ "title": "Campanha", "assignee": "ninguem", "action": "deploy" }]
+  }
+}
