@@ -36,7 +36,7 @@ export function AgentePainel({ id, onFechar }: { id: string; onFechar: () => voi
             <i className="ponto" /> {dep?.nome}
             {a.pacoteId && <span className="tag t-pendente">pacote: {a.pacoteId}</span>}
           </p>
-          <p className={`rotulo-estado inline e-${a.estado}`}>ESTADO: {ESTADO_AGENTE_LABEL[a.estado]}</p>
+          <p className={`selo inline e-${a.estado}`}>ESTADO: {ESTADO_AGENTE_LABEL[a.estado]}</p>
         </div>
       </div>
 

@@ -76,6 +76,7 @@ export function criarApp() {
   app.get('/api/stream', (req, res) => {
     res.set({ 'Content-Type': 'text/event-stream', 'Cache-Control': 'no-cache', Connection: 'keep-alive' });
     res.flushHeaders();
+    res.write(': conectado\n\n'); // faz proxies (ex.: Vite) repassarem a conexão na hora
     const enviar = () => res.write(`event: mudanca\ndata: ${Date.now()}\n\n`);
     const ping = setInterval(() => res.write(': ping\n\n'), 25_000);
     barramento.on('mudanca', enviar);

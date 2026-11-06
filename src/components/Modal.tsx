@@ -15,7 +15,7 @@ export function Modal({ titulo, onFechar, children, lateral }: { titulo: string;
   }, [onFechar]);
   return (
     <div className={`fundo-modal ${lateral ? 'lateral' : ''}`} onMouseDown={(e) => e.target === e.currentTarget && onFechar()}>
-      <div className="modal" role="dialog" aria-modal="true" aria-label={titulo} ref={ref} tabIndex={-1}>
+      <div className="modal" role="dialog" aria-modal={!lateral} aria-label={titulo} ref={ref} tabIndex={-1}>
         <header className="modal-topo">
           <h2>{titulo}</h2>
           <button className="fechar" onClick={onFechar} aria-label="Fechar">

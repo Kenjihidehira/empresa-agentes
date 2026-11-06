@@ -1,8 +1,9 @@
 # Empresa de Agentes
 
 Aplicação web para gerenciar agentes de IA como funcionários de uma **empresa virtual de desenvolvimento de software**.
-O escritório é uma planta de cubículos em estilo terminal: cada agente tem uma baia com monitor. A cor do monitor e um
-rótulo verde/amarelo/vermelho mostram o que ele está fazendo (`ESTADO: TRABALHANDO (REFATORAR MÓDULO DE CHECKOUT)`).
+O escritório é uma planta **isométrica em pixel art**: corredores, baias com divisórias e mesas de madeira, monitores
+acesos com código rolando, sala da diretoria com carpete e funcionários de terno. Rótulos acima de cada agente mostram
+nome e estado (`TRABALHANDO`, `AGUARDANDO APROVAÇÃO`, `BLOQUEADO`), e agentes ociosos às vezes saem para andar pelo corredor.
 
 - **Stack:** TypeScript, React 18 + Vite, Express 5, SQLite (`node:sqlite`, nativo do Node 22, sem compilação).
 - **Motores de execução:** Simulação (padrão, sem custo), ChatGPT via Codex CLI e Claude via Claude Code CLI.
@@ -43,13 +44,14 @@ Variáveis de ambiente opcionais: `PORT` (padrão 3001), `DB_PATH` (padrão `dat
 
 | Aba | O que faz |
 | --- | --- |
-| **Escritório** | Cubículos por setor. Console de eventos ao vivo (canto superior esquerdo), terminal de controle com KPIs, agentes ativos, aprovações e alertas (canto inferior esquerdo), botão **Ocultar terminais**, zoom e filtro por setor. No celular, vira uma lista de cartões. |
+| **Escritório** | Planta isométrica gerada automaticamente a partir dos setores e agentes. **Janela de chat** (canto superior esquerdo) com os eventos ao vivo e um campo para delegar uma tarefa ao agente selecionado. **Painel de controle** (canto inferior direito) com agentes ativos, projetos, aprovações, custo e estado geral. Botão **Ocultar terminais**, zoom de 100% a 300%, arrastar para mover a câmera e filtro por setor. No celular, vira uma lista de cartões. |
 | **Organograma** | Hierarquia (gestor → equipe) com cor do departamento e estado de cada agente. |
 | **Tarefas** | Criar, filtrar, buscar, executar e acompanhar: resultado, erro e linha do tempo de eventos de cada tarefa. |
 | **Aprovações** | Fila de ações sensíveis com Aprovar/Rejeitar, observação opcional e histórico. |
 | **Importar** | Validação e importação de pacotes `agentcompanies/v1`, lista de pacotes importados e botão para restaurar a demonstração. |
 
-Clique em um agente para abrir a ficha: gestor, equipe, motor, barra de orçamento, permissões, instruções e tarefas.
+Clique em um agente (no personagem ou no rótulo) para abrir a ficha lateral: gestor, equipe, motor, barra de orçamento,
+permissões, instruções e tarefas. Com a ficha aberta, a janela de chat delega tarefas a esse agente.
 
 **Teclado:** `1`–`5` trocam de aba, `N` abre uma nova tarefa, `A` cria um novo agente, setas navegam entre os cubículos,
 `Enter` abre a ficha e `Esc` fecha janelas.
@@ -146,6 +148,7 @@ server/   index.ts (inicialização) · app.ts (rotas) · db.ts (SQLite) · moto
           importador.ts (agentcompanies/v1) · seed.ts (demonstração) · tests/
 shared/   types.ts (tipos e constantes usados no front e no back)
 src/      App.tsx · api.ts · styles.css · components/ (Escritorio, Organograma, Tarefas, Aprovacoes, Importar, ...)
+          iso/cena.ts (layout e desenho isométrico em canvas) · iso/sprites.ts (personagens em pixel art)
 exemplos/ pacotes de exemplo
 data/     banco SQLite (criado automaticamente, fora do git)
 ```
